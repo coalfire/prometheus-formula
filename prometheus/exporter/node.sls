@@ -6,7 +6,7 @@ include:
 node_exporter_tarball:
   archive.extracted:
     - name: {{ prometheus.exporter.node.install_dir }}
-    - source: {{ prometheus.exporter.node.source }}
+    - source: {{ prometheus.exporter.node.source }}/v{{ promethus.exporter.node.version }}/prometheus-{{ promethus.exporter.node.version }}.{{ prometheus.exporter.node.arch }}.tar.gz
     - source_hash: {{ prometheus.exporter.node.source_hash }}
     - user: {{ prometheus.user }}
     - group: {{ prometheus.group }}
