@@ -6,7 +6,7 @@ include:
 alertmanager_tarball:
   archive.extracted:
     - name: {{ prometheus.alertmanager.install_dir }}
-    - source: {{ prometheus.alertmanager.source }}/v{{ promethus.alertmanager.version }}/prometheus-{{ promethus.alertmanager.version }}.{{ prometheus.alertmanager.arch }}.tar.gz
+    - source: {{ prometheus.alertmanager.source }}/v{{ prometheus.alertmanager.version }}/prometheus-{{ prometheus.alertmanager.version }}.{{ prometheus.alertmanager.arch }}.tar.gz
     - source_hash: {{ prometheus.alertmanager.source_hash }}
     - archive_format: tar
     - if_missing: {{ prometheus.alertmanager.version_path }}

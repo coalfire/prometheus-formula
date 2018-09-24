@@ -6,7 +6,7 @@ include:
 prometheus_server_tarball:
   archive.extracted:
     - name: {{ prometheus.server.install_dir }}
-    - source: {{ prometheus.server.source }}/v{{ promethus.server.version }}/prometheus-{{ promethus.server.version }}.{{ prometheus.server.arch }}.tar.gz
+    - source: {{ prometheus.server.source }}/v{{ prometheus.server.version }}/prometheus-{{ prometheus.server.version }}.{{ prometheus.server.arch }}.tar.gz
     - source_hash: {{ prometheus.server.source_hash }}
     - archive_format: tar
     - if_missing: {{ prometheus.server.version_path }}
