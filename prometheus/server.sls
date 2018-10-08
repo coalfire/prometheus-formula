@@ -19,11 +19,11 @@ prometheus_bin_link:
       - archive: prometheus_server_tarball
 
 prometheus_server_config:
-  file.serialize:
+  file.managed:
     - name: {{ prometheus.server.args.config_file }}
     - user: {{ prometheus.user }}
     - group: {{ prometheus.group }}
-    - dataset_pillar: prometheus:server:config
+    - source: salt://prometheus/files/prometheus.config.jinja
     - makedirs: True
 
 prometheus_defaults:

@@ -28,7 +28,7 @@ alertmanager_config:
 alertmanager_config:
   file.managed:
     - name: {{ prometheus.alertmanager.args.config_file }}
-    - source: salt://prometheus/files/config.jinja
+    - source: salt://prometheus/files/alertmanager.config.jinja
     - template: jinja
     - user: {{ prometheus.user }}
     - group: {{ prometheus.group }}
