@@ -27,7 +27,7 @@ prometheus_server_config:
     - makedirs: True
 
 prometheus_rules_directory:
-   file.directory:
+   file.recurse:
      - name: {{ prometheus.server.args.rules }}
      - user: {{ prometheus.user }}
      - group: {{ prometheus.group }}
