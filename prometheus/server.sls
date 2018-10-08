@@ -23,8 +23,21 @@ prometheus_server_config:
     - name: {{ prometheus.server.args.config_file }}
     - user: {{ prometheus.user }}
     - group: {{ prometheus.group }}
-    - source: salt://prometheus/files/prometheus.config.jinja
+    - source: salt://packages/prometheus/files/prometheus.config.jinja
     - makedirs: True
+
+prometheus_rules_directory:
+   file.directory:
+     - name: {{ prometheus.server.args.rules }}
+     - user: {{ prometheus.user }}
+     - group: {{ prometheus.group }}
+     - source: salt://packages/prometheus/files/rules.d
+     - dir_mode: 755
+     - file_mode: 660
+     - recurse:
+       - user
+       - group
+       - mode
 
 prometheus_defaults:
   file.managed:
