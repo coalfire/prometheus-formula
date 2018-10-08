@@ -21,6 +21,7 @@ prometheus_bin_link:
 prometheus_server_config:
   file.managed:
     - name: {{ prometheus.server.args.config_file }}
+    - template: jinja
     - user: {{ prometheus.user }}
     - group: {{ prometheus.group }}
     - source: salt://packages/prometheus/files/prometheus.config.jinja
@@ -28,7 +29,7 @@ prometheus_server_config:
 
 prometheus_rules_directory:
    file.recurse:
-     - name: {{ prometheus.server.args.rules }}
+     - name: {{ prometheus.server.rules }}
      - user: {{ prometheus.user }}
      - group: {{ prometheus.group }}
      - source: salt://packages/prometheus/files/rules.d
