@@ -2,11 +2,15 @@
 
 {% set prometheus = salt['pillar.get']('prometheus', default=defaults.prometheus, merge=True) %}
 
-{% do prometheus.alertmanager.update({'version_path': prometheus.alertmanager.install_dir ~ "/alertmanager-" ~ prometheus.alertmanager.version}) %}
-{% do prometheus.server.update({'version_path': prometheus.server.install_dir ~ "/prometheus-" ~ prometheus.server.version}) %}
 
-{% do prometheus.exporter.node.update({'version_path': prometheus.exporter.node.install_dir ~ "/node_exporter-" ~ prometheus.exporter.node.version}) %}
-{% do prometheus.exporter.blackbox.update({'version_path': prometheus.exporter.blackbox.install_dir ~ "/blackbox_exporter-" ~ prometheus.exporter.blackbox.version}) %}
-{% do prometheus.exporter.haproxy.update({'version_path': prometheus.exporter.haproxy.install_dir ~ "/haproxy_exporter-" ~ prometheus.exporter.haproxy.version}) %}
-{% do prometheus.exporter.rabbitmq.update({'version_path': prometheus.exporter.rabbitmq.install_dir ~ "/rabbitmq_exporter-" ~ prometheus.exporter.rabbitmq.version}) %}
+{% do prometheus.alertmanager.update({'version_path': prometheus.alertmanager.install_dir ~ "/alertmanager-" ~ prometheus.alertmanager.version ~ "." prometheus.alertmanager.arch}) %}
+{% do prometheus.alertmanager.update({'source': prometheus.alertmanager.base_url ~ "/v" ~ prometheus.alertmanager.version ~ "prometheus-" ~ prometheus.alertmanager.version ~ "." ~ prometheus.alertmanager.arch}) %}
+
+{% do prometheus.server.update({'version_path': prometheus.server.install_dir ~ "/prometheus-" ~ prometheus.server.version ~ "." prometheus.server.arch}) %}
+{% do prometheus.server.update({'source': prometheus.server.base_url ~ "/v" ~ prometheus.server.version ~ "prometheus-" ~ prometheus.server.version ~ "." ~ prometheus.server.arch}) %}
+
+{% do prometheus.exporter.node.update({'version_path': prometheus.exporter.node.install_dir ~ "/node_exporter-" ~ prometheus.exporter.node.version ~ "." prometheus.exporter.node.arch}) %}
+{% do prometheus.exporter.blackbox.update({'version_path': prometheus.exporter.blackbox.install_dir ~ "/blackbox_exporter-" ~ prometheus.exporter.blackbox.version ~ "." prometheus.exporter.blackbox.arch}) %}
+{% do prometheus.exporter.haproxy.update({'version_path': prometheus.exporter.haproxy.install_dir ~ "/haproxy_exporter-" ~ prometheus.exporter.haproxy.version ~ "." prometheus.exporter.haproxy.arch}) %}
+{% do prometheus.exporter.rabbitmq.update({'version_path': prometheus.exporter.rabbitmq.install_dir ~ "/rabbitmq_exporter-" ~ prometheus.exporter.rabbitmq.version ~ "." prometheus.exporter.rabbitmq.arch}) %}
 
