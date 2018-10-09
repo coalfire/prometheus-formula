@@ -6,7 +6,7 @@ include:
 alertmanager_tarball:
   archive.extracted:
     - name: {{ prometheus.alertmanager.install_dir }}
-    - source: {{ prometheus.alertmanager.source }}/v{{ prometheus.alertmanager.version }}/prometheus-{{ prometheus.alertmanager.version }}.{{ prometheus.alertmanager.arch }}.tar.gz
+    - source: {{ prometheus.alertmanager.base_url }}/v{{ prometheus.alertmanager.version }}/alertmanager-{{ prometheus.alertmanager.version }}.{{ prometheus.alertmanager.arch }}.tar.gz
     - source_hash: {{ prometheus.alertmanager.source_hash }}
     - archive_format: tar
     - if_missing: {{ prometheus.alertmanager.version_path }}
@@ -19,22 +19,13 @@ alertmanager_bin_link:
       - archive: alertmanager_tarball
 
 alertmanager_config:
-  file.serialize:
-    - name: {{ prometheus.alertmanager.args.config_file }}
-    - user: {{ prometheus.user }}
-    - group: {{ prometheus.group }}
-    - dataset_pillar: prometheus:alertmanager:config
-
-alertmanager_config:
   file.managed:
     - name: {{ prometheus.alertmanager.args.config_file }}
-    - source: salt://prometheus/files/alertmanager.config.jinja
+    - source: salt://packages/prometheus/files/alertmanager.config.jinja
     - template: jinja
     - user: {{ prometheus.user }}
     - group: {{ prometheus.group }}
     - makedirs: True
-    - defaults:
-        data: {{ prometheus.alertmanager.config }}
 
 alertmanager_defaults:
   file.managed:

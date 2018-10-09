@@ -2,7 +2,7 @@
 
 {% set prometheus = salt['pillar.get']('prometheus', default=defaults.prometheus, merge=True) %}
 
-{% do prometheus.alertmanager.update({'version_path': prometheus.alertmanager.install_dir ~ "/alertmanager-" ~ prometheus.alertmanager.version}) %}
+{% do prometheus.alertmanager.update({'version_path': prometheus.alertmanager.install_dir ~ "/alertmanager-" ~ prometheus.alertmanager.version ~ "." ~ prometheus.alertmanager.arch}) %}
 {% do prometheus.server.update({'version_path': prometheus.server.install_dir ~ "/prometheus-" ~ prometheus.server.version ~ "." ~ prometheus.server.arch}) %}
 
 {% do prometheus.exporter.node.update({'version_path': prometheus.exporter.node.install_dir ~ "/node_exporter-" ~ prometheus.exporter.node.version ~ "." ~ prometheus.exporter.node.arch }) %}

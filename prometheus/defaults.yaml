@@ -11,7 +11,7 @@ prometheus:
       storage:
         local_path: /var/lib/prometheus/metrics
   alertmanager:
-    version: 0.5.1.linux-amd64
+    version: 0.15.2.linux-amd64
     install_dir: /opt
     source: https://github.com/prometheus/alertmanager/releases/download/v0.5.1/alertmanager-0.5.1.linux-amd64.tar.gz
     source_hash: sha1=8f82ccc0db806991256084faee9335353d8e3f0d

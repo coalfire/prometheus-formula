@@ -1,5 +1,7 @@
+{% set peers = salt['pillar.get']('alertmanager:listing') %}
+
 # Set the command-line arguments to pass to the server.
-ARGS="--config.file {{config_file}} --storage.path {{ storage_path }}"
+ARGS="--config.file {{config_file}} --storage.path {{ storage_path }} {% for peer in peers -%} --cluster.peer {{ peer }}:9094 {% endfor -%}"
 
 # The alert manager supports the following options:
 #  -config.file string
