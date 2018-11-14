@@ -28,17 +28,43 @@ prometheus_server_config:
     - makedirs: True
 
 prometheus_rules_directory:
-   file.recurse:
-     - name: {{ prometheus.server.rules }}
-     - user: {{ prometheus.user }}
-     - group: {{ prometheus.group }}
-     - source: salt://packages/prometheus/files/rules.d
-     - dir_mode: 755
-     - file_mode: 660
-     - recurse:
-       - user
-       - group
-       - mode
+  file.recurse:
+    - name: {{ prometheus.server.rules }}
+    - user: {{ prometheus.user }}
+    - group: {{ prometheus.group }}
+    - source: salt://packages/prometheus/files/rules.d
+    - dir_mode: 755
+    - file_mode: 660
+    - recurse:
+      - user
+      - group
+      - mode
+
+prometheus_console_libraries_directory:
+  file.recurse:
+    - name: {{ prometheus.server.args.web_console_libraries }}
+    - user: {{ prometheus.user }}
+    - group: {{ prometheus.group }}
+    - source: salt://packages/prometheus/files/console_libraries
+    - dir_mode: 755
+    - file_mode: 660
+    - recurse:
+      - user
+      - group
+      - mode
+
+prometheus_console_templates_directory:
+  file.recurse:
+    - name: {{ prometheus.server.args.web_console_templates }}
+    - user: {{ prometheus.user }}
+    - group: {{ prometheus.group }}
+    - source: salt://packages/prometheus/files/console_templates
+    - dir_mode: 755
+    - file_mode: 660
+    - recurse:
+      - user
+      - group
+      - mode
 
 prometheus_defaults:
   file.managed:
@@ -48,8 +74,8 @@ prometheus_defaults:
     - defaults:
         config_file: {{ prometheus.server.args.config_file }}
         storage_local_path: {{ prometheus.server.args.storage.local_path }}
-        web_console_libraries: {{ prometheus.server.version_path }}/console_libraries
-        web_console_templates: {{ prometheus.server.version_path }}/consoles
+        web_console_libraries: {{ prometheus.server.args.web_console_libraries }}
+        web_console_templates: {{ prometheus.server.args.web_console_templates }}
 
 {%- if prometheus.server.args.storage.local_path is defined %}
 prometheus_storage_local_path:
