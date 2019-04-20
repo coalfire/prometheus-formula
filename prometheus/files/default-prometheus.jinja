@@ -1,5 +1,6 @@
+{% set prometheus_source = salt['pillar.get']('prometheus_source') %}
 # Set the command-line arguments to pass to the server.
-ARGS="--config.file {{config_file}} --storage.tsdb.path {{storage_local_path}} --web.console.libraries {{web_console_libraries}} --web.console.templates {{web_console_templates}}"
+ARGS="--config.file {{config_file}} --storage.tsdb.path {{storage_local_path}} --web.console.libraries {{web_console_libraries}} --web.console.templates {{web_console_templates}} --web.external-url {{prometheus_source}}"
 
 # usage: prometheus [<flags>]
 # 
