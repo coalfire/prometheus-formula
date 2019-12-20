@@ -26,10 +26,10 @@ prometheus:
       source: https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz
       source_hash: sha256=e92a601a5ef4f77cce967266b488a978711dabc527a720bea26505cba426c029
     blackbox:
-      version: 0.3.0.linux-amd64
+      version: 0.16.0.linux-amd64
       install_dir: /opt
-      source: https://github.com/prometheus/blackbox_exporter/releases/download/v0.3.0/blackbox_exporter-0.3.0.linux-amd64.tar.gz
-      source_hash: sha1=89ac98c062315ba35eda257ca88c8c4b43f38d47
+      source: https://github.com/prometheus/blackbox_exporter/releases/download/v0.16.0/blackbox_exporter-0.16.0.linux-amd64.tar.gz
+      source_hash: sha256=52d3444a518ea01f220e08eaa53eb717ef54da6724760c925ab41285d0d5a7bd
       args:
         config_file: /etc/prometheus/blackbox_exporter.yml
     haproxy:
