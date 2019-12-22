@@ -47,3 +47,11 @@ node_exporter_service:
       - file: node_exporter_service_unit
       - file: node_exporter_defaults
       - file: node_exporter_bin_link
+
+node_exporter_textfile_directory:
+  file.directory:
+    - name: /var/lib/node_exporter/textfile_collector
+    - user: {{ prometheus.user }}
+    - group: {{ prometheus.group }}
+    - dir_mode: 2774
+    - makedirs: True
