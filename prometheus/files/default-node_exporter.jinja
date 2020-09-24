@@ -1,2 +1,5 @@
 # Set the command-line arguments to pass to the server.
-ARGS="--collector.systemd --collector.textfile.directory=/var/lib/node_exporter/textfile_collector"
+ARGS="--collector.systemd \
+      --collector.textfile.directory=/var/lib/node_exporter/textfile_collector \
+      --collector.diskstats.ignored-devices=^(ram|loop|fd)\d+$ \
+      --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)"
